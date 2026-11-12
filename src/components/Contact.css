@@ -26,6 +26,7 @@
     transparent 345deg
   );
   animation: contact-spin 6s linear infinite;
+  will-change: transform;
 }
 @keyframes contact-spin {
   to { transform: rotate(360deg); }

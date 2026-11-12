@@ -58,6 +58,7 @@
   height: 200%;
   background: conic-gradient(from 0deg, transparent 0deg, transparent 160deg, var(--teal) 220deg, var(--indigo) 280deg, var(--rose) 330deg, transparent 355deg);
   animation: avatar-spin 6s linear infinite;
+  will-change: transform;
 }
 @keyframes avatar-spin {
   to { transform: rotate(360deg); }

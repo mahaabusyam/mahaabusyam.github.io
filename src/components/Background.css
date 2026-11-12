@@ -4,38 +4,45 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  contain: paint;
+  transform: translateZ(0);
   background:
     radial-gradient(1200px 700px at 80% -10%, #142a4d 0%, transparent 60%),
     radial-gradient(900px 600px at 0% 40%, #1a1740 0%, transparent 60%),
     linear-gradient(180deg, #070e1c, #0a1426 50%, #070e1c);
 }
 
-/* ---------- aurora: big blurred color clouds that drift and shift hue ---------- */
+/* ---------- aurora: soft color clouds (gradient, no blur filter) ---------- */
 .aurora {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  animation: drift 16s ease-in-out infinite alternate, hue 22s linear infinite alternate;
+  will-change: transform;
+  animation: drift 18s ease-in-out infinite alternate;
 }
-.aurora-1 { width: 620px; height: 620px; background: #2a8c82; opacity: 0.32; top: -160px; right: -120px; }
-.aurora-2 { width: 560px; height: 560px; background: #5b6cf0; opacity: 0.28; top: 45vh; left: -200px; animation-delay: -6s; }
-.aurora-3 { width: 520px; height: 520px; background: #e0527a; opacity: 0.16; top: 75vh; right: -220px; animation-delay: -3s; }
-.aurora-4 { width: 560px; height: 560px; background: #f08a3c; opacity: 0.12; bottom: -240px; left: -200px; animation-delay: -9s; }
+.aurora-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(42, 140, 130, 0.55), transparent 68%); top: -200px; right: -160px; }
+.aurora-2 { width: 640px; height: 640px; background: radial-gradient(circle, rgba(91, 108, 240, 0.45), transparent 68%); top: 45vh; left: -220px; animation-delay: -6s; }
+.aurora-3 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(224, 82, 122, 0.28), transparent 68%); top: 75vh; right: -240px; animation-delay: -3s; }
+.aurora-4 { width: 640px; height: 640px; background: radial-gradient(circle, rgba(240, 138, 60, 0.2), transparent 68%); bottom: -260px; left: -220px; animation-delay: -9s; }
 
 @keyframes drift {
-  from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(60px, 40px) scale(1.15); }
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(60px, 40px, 0) scale(1.12); }
 }
 @keyframes hue {
   from { filter: blur(90px) hue-rotate(0deg); }
   to { filter: blur(90px) hue-rotate(80deg); }
 }
 
-/* ---------- stars: tiny radial gradients repeated as a tiled pattern ---------- */
+/* The layer is one tile larger than the screen and slides by exactly one tile
+   with transform (cheap), instead of animating background-position (expensive). */
 .stars {
   position: absolute;
-  inset: 0;
+  top: calc(var(--tile) * -1);
+  left: calc(var(--tile) * -1);
+  width: calc(100% + var(--tile));
+  height: calc(100% + var(--tile));
   background-repeat: repeat;
+  will-change: transform, opacity;
 }
 
 .stars-a {
@@ -67,58 +74,56 @@
     radial-gradient(1.9px 1.9px at 464px 370px, #dfe9ff, transparent),
     radial-gradient(1.9px 1.9px at 254px 184px, #fff, transparent),
     radial-gradient(1.9px 1.9px at 249px 83px, #fff, transparent);
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
-  animation: twinkleA 4s ease-in-out infinite alternate, driftA 160s linear infinite;
-}
+     --tile: 700px;
+  animation: twinkleA 4s ease-in-out infinite alternate, star-drift 160s linear infinite;
+  }
 
 .stars-b {
   background-size: 900px 900px;
   background-image:
-    radial-gradient(2.8px 2.8px at 307px 537px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 896px 351px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 294px 623px, #5fd0c5, transparent),
-    radial-gradient(2.8px 2.8px at 120px 524px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 168px 775px, #ffc16b, transparent),
-    radial-gradient(2.8px 2.8px at 155px 500px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 40px 684px, #5fd0c5, transparent),
-    radial-gradient(2.8px 2.8px at 782px 571px, #ffc16b, transparent),
-    radial-gradient(2.8px 2.8px at 348px 711px, #ffc16b, transparent),
-    radial-gradient(2.8px 2.8px at 608px 508px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 70px 860px, #5fd0c5, transparent),
-    radial-gradient(2.8px 2.8px at 276px 485px, #5fd0c5, transparent),
-    radial-gradient(2.8px 2.8px at 62px 748px, #ffc16b, transparent),
-    radial-gradient(2.8px 2.8px at 662px 591px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 291px 733px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 684px 355px, #5fd0c5, transparent),
-    radial-gradient(2.8px 2.8px at 472px 363px, #8b9bff, transparent),
-    radial-gradient(2.8px 2.8px at 625px 119px, #ff8fab, transparent),
-    radial-gradient(2.8px 2.8px at 60px 223px, #ffc16b, transparent),
-    radial-gradient(2.8px 2.8px at 132px 756px, #8b9bff, transparent);
-  filter: drop-shadow(0 0 4px rgba(139, 155, 255, 0.9));
-  animation: twinkleB 5.5s ease-in-out infinite alternate, driftB 220s linear infinite;
-}
+    radial-gradient(4px 4px at 307px 537px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 896px 351px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 294px 623px, #5fd0c5, transparent),
+    radial-gradient(4px 4px at 120px 524px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 168px 775px, #ffc16b, transparent),
+    radial-gradient(4px 4px at 155px 500px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 40px 684px, #5fd0c5, transparent),
+    radial-gradient(4px 4px at 782px 571px, #ffc16b, transparent),
+    radial-gradient(4px 4px at 348px 711px, #ffc16b, transparent),
+    radial-gradient(4px 4px at 608px 508px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 70px 860px, #5fd0c5, transparent),
+    radial-gradient(4px 4px at 276px 485px, #5fd0c5, transparent),
+    radial-gradient(4px 4px at 62px 748px, #ffc16b, transparent),
+    radial-gradient(4px 4px at 662px 591px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 291px 733px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 684px 355px, #5fd0c5, transparent),
+    radial-gradient(4px 4px at 472px 363px, #8b9bff, transparent),
+    radial-gradient(4px 4px at 625px 119px, #ff8fab, transparent),
+    radial-gradient(4px 4px at 60px 223px, #ffc16b, transparent),
+    radial-gradient(4px 4px at 132px 756px, #8b9bff, transparent);
+    --tile: 900px;
+  animation: twinkleB 5.5s ease-in-out infinite alternate, star-drift 220s linear infinite reverse;
+  }
 
 .stars-c {
   background-size: 1300px 1300px;
   background-image:
-    radial-gradient(4.6px 4.6px at 814px 800px, #ff8fab, transparent),
-    radial-gradient(4.6px 4.6px at 165px 340px, #ff8fab, transparent),
-    radial-gradient(4.6px 4.6px at 822px 1125px, #ffc16b, transparent),
-    radial-gradient(4.6px 4.6px at 280px 881px, #ffffff, transparent),
-    radial-gradient(4.6px 4.6px at 570px 850px, #ffc16b, transparent),
-    radial-gradient(4.6px 4.6px at 779px 472px, #8b9bff, transparent),
-    radial-gradient(4.6px 4.6px at 475px 477px, #5fd0c5, transparent),
-    radial-gradient(4.6px 4.6px at 993px 1206px, #8b9bff, transparent);
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95));
-  animation: twinkleC 3s ease-in-out infinite alternate, driftC 300s linear infinite;
-}
+    radial-gradient(6px 6px at 814px 800px, #ff8fab, transparent),
+    radial-gradient(6px 6px at 165px 340px, #ff8fab, transparent),
+    radial-gradient(6px 6px at 822px 1125px, #ffc16b, transparent),
+    radial-gradient(6px 6px at 280px 881px, #ffffff, transparent),
+    radial-gradient(6px 6px at 570px 850px, #ffc16b, transparent),
+    radial-gradient(6px 6px at 779px 472px, #8b9bff, transparent),
+    radial-gradient(6px 6px at 475px 477px, #5fd0c5, transparent),
+    radial-gradient(6px 6px at 993px 1206px, #8b9bff, transparent);
+    --tile: 1300px;
+  animation: twinkleC 3s ease-in-out infinite alternate, star-drift 300s linear infinite;
+  }
 
 @keyframes twinkleA { from { opacity: 0.6; } to { opacity: 1; } }
 @keyframes twinkleB { from { opacity: 1; } to { opacity: 0.55; } }
 @keyframes twinkleC { 0% { opacity: 0.65; } 50% { opacity: 1; } 100% { opacity: 0.55; } }
-@keyframes driftA { to { background-position: 700px 700px; } }
-@keyframes driftB { to { background-position: -900px 900px; } }
-@keyframes driftC { to { background-position: 1300px -1300px; } }
+@keyframes star-drift { to { transform: translate3d(var(--tile), var(--tile), 0); } }
 
 /* ---------- shooting stars ---------- */
 .shoot {
@@ -127,9 +132,9 @@
   height: 3px;
   border-radius: 3px;
   background: linear-gradient(90deg, transparent, #ffffff);
-  box-shadow: 0 0 12px 2px rgba(255, 255, 255, 0.55);
   opacity: 0;
   transform: rotate(32deg);
+  will-change: transform, opacity;
   animation: shoot 9s linear infinite;
 }
 .s1 { top: 6%; left: 12%; animation-delay: 1s; }
@@ -144,4 +149,14 @@
   2% { opacity: 1; }
   9% { opacity: 0; transform: rotate(32deg) translateX(620px); }
   100% { opacity: 0; transform: rotate(32deg) translateX(620px); }
+}
+
+/* phones: a lighter background */
+@media (max-width: 768px) {
+  .aurora-3,
+  .aurora-4,
+  .stars-b,
+  .shoot {
+    display: none;
+  }
 }

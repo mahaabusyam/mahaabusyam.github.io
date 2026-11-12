@@ -58,6 +58,7 @@
     transparent 345deg
   );
   animation: card-spin 5s linear infinite;
+  will-change: transform; 
 }
 @keyframes card-spin {
   to { transform: rotate(360deg); }

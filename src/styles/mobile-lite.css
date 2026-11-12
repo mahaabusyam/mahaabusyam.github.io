@@ -1,0 +1,42 @@
+/* Step-by-step mobile tuning. Everything is the original design and the same
+   animations. Enable ONE stage at a time (remove its comment marks), rebuild,
+   test on the phone, then move to the next. Stop at the stage where it starts
+   to feel slow and tell me which one it was. */
+@media (max-width: 900px), (hover: none) {
+  /* STAGE 1 (active): faster taps. No visual change at all. */
+  html {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  
+  .bg {
+    height: 100lvh;
+  }
+
+  .bg .stars {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .bg .stars-a { animation: twinkleA 4s ease-in-out infinite alternate; }
+  .bg .stars-b { animation: twinkleB 5.5s ease-in-out infinite alternate; }
+  .bg .stars-c { animation: twinkleC 3s ease-in-out infinite alternate; }
+
+
+  
+  .bg .aurora-1 { width: 480px; height: 480px; animation-name: drift-lite; }
+  .bg .aurora-2 { width: 440px; height: 440px; animation-name: drift-lite; }
+  .bg .aurora-3,
+  .bg .aurora-4 {
+    width: 420px;
+    height: 420px;
+    animation: none;
+    will-change: auto;
+  }
+  @keyframes drift-lite {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(60px, 40px, 0); }
+  }
+}
