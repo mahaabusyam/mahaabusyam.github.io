@@ -1,0 +1,43 @@
+/* Design tokens: one place for every color, font and radius.
+   Change a value here and the whole site updates. */
+:root {
+  /* surfaces */
+  --bg: #070e1c;
+  --surface: #0f1d33;
+  --surface-2: #1b3558;
+  --navy: #1f3a5f;
+
+  /* accents (same colors used in the CV, GitHub and LinkedIn) */
+  --teal: #5fd0c5;
+  --teal-dark: #2a8c82;
+  --indigo: #8b9bff;
+  --indigo-dark: #5b6cf0;
+  --amber: #ffc16b;
+  --amber-dark: #f08a3c;
+  --rose: #ff8fab;
+  --rose-dark: #e0527a;
+
+  /* text */
+  --text: #e8eef6;
+  --text-strong: #ffffff;
+  --text-muted: #c5d2e0;
+  --text-subtle: #9fb2c7;
+
+  /* lines */
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  /* shape */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* type */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* layout */
+  --container: 1160px;
+  --gutter: 32px;
+}

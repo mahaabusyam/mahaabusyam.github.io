@@ -1,0 +1,134 @@
+.projects {
+  padding: 24px 0 96px;
+}
+.projects-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.projects-all {
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 28px;
+}
+.card-wrap {
+  display: flex;
+}
+
+/* The running border light:
+   .card has 2px padding and a clipped edge. Inside it, .card-spin is a big
+   rotating conic-gradient (a "light" with a bright head and a fading tail).
+   .card-inner sits on top, leaving only the 2px rim visible, so the
+   light appears to travel around the border. */
+.card {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  padding: 2px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+}
+.card-spin {
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 150deg,
+    var(--c1) 215deg,
+    var(--c2) 280deg,
+    #ffffff 320deg,
+    transparent 345deg
+  );
+  animation: card-spin 5s linear infinite;
+}
+@keyframes card-spin {
+  to { transform: rotate(360deg); }
+}
+.card-inner {
+  position: relative;
+  height: 100%;
+  padding: 36px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(150deg, #1b3558, #0e1b2f);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+}
+.card-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--c1);
+}
+.card-title {
+  margin-top: 24px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+.card-desc {
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.card-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+.card-links {
+  display: flex;
+  gap: 28px;
+  margin-top: 26px;
+  color: var(--c1);
+}
+.card-links a {
+  padding: 8px 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s;
+}
+.card-links a:hover {
+  border-color: currentColor;
+}
+
+@media (max-width: 640px) {
+  .card-inner {
+    padding: 28px 24px;
+  }
+}

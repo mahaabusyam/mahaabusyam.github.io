@@ -1,0 +1,74 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-strong);
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-name {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.brand .accent {
+  color: var(--teal);
+}
+.brand-role {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  color: var(--text-subtle);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+.nav-link {
+  padding: 10px 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #b6c4d4;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: var(--text-strong);
+}
+.btn-sm {
+  min-height: 42px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+/* logo animations */
+.logo-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-spin 10s linear infinite;
+}
+.logo-m {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: logo-draw 1.4s 0.3s ease-out forwards;
+}
+@keyframes logo-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes logo-draw {
+  to { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,194 @@
+.experience {
+  padding: 24px 0 96px;
+}
+.experience .section-title {
+  margin-bottom: 36px;
+}
+
+.timeline-row {
+  display: flex;
+  gap: 28px;
+}
+.timeline-rail {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+}
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 6px rgba(95, 208, 197, 0.2);
+}
+.timeline-line {
+  flex: 1;
+  width: 2px;
+  margin-top: 8px;
+  background: linear-gradient(180deg, var(--teal), rgba(255, 255, 255, 0.1));
+}
+.timeline-line.sr {
+  animation-range: entry 0% entry 100%;
+}
+
+/* ---------- the job card ---------- */
+.xpcard {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 32px 34px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, rgba(27, 53, 88, 0.8), rgba(12, 22, 38, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.xpcard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--indigo), var(--rose));
+}
+.xpcard:hover {
+  border-color: rgba(95, 208, 197, 0.55);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.xp-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.xp-who {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.xp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  color: #0b1626;
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+}
+.xp-role {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+.xp-company {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--teal);
+}
+.xp-period {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.xp-summary {
+  max-width: 760px;
+  margin-top: 22px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* the four websites: one row of four */
+.xp-projects {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+.xpproj {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+.xpproj:hover {
+  transform: translateY(-3px);
+  border-color: var(--ac);
+  background: rgba(255, 255, 255, 0.09);
+}
+.xp-dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ac);
+  box-shadow: 0 0 10px var(--ac);
+}
+.xp-name {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.xp-arrow {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ac);
+}
+
+.xp-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+.xp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--amber);
+  background: rgba(255, 193, 107, 0.12);
+  border: 1px solid rgba(255, 193, 107, 0.45);
+}
+
+@media (max-width: 640px) {
+  .timeline-row {
+    gap: 16px;
+  }
+  .xpcard {
+    padding: 24px 20px;
+  }
+  .xp-role {
+    font-size: 21px;
+  }
+}
+/* on narrower screens four in a row would be too tight, so two per row */
+@media (max-width: 900px) {
+  .xp-projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

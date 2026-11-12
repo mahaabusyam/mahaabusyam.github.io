@@ -1,0 +1,176 @@
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 56px;
+  padding: 72px 0 96px;
+}
+.hero-text {
+  flex: 1 1 440px;
+  min-width: 0;
+}
+.hero-visual {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.accent {
+  color: var(--teal);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  background: rgba(95, 208, 197, 0.12);
+  border: 1px solid rgba(95, 208, 197, 0.4);
+}
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+
+.hero-title {
+  margin-top: 24px;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--text-strong);
+}
+.hero-desc {
+  margin-top: 24px;
+  max-width: 540px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #b6c4d4;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+/* typing caret */
+.caret {
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: -4px;
+  background: var(--teal);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* entrance animation: fade + rise, each block a bit later (d1 to d5) */
+.reveal {
+  opacity: 0;
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.18s; }
+.d3 { animation-delay: 0.31s; }
+.d4 { animation-delay: 0.44s; }
+.d5 { animation-delay: 0.6s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* code card: floats, and its border glow breathes through teal, indigo and rose */
+.code-card {
+  width: 100%;
+  max-width: 470px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(160deg, #16294a, #0f1d33);
+  border: 1px solid rgba(95, 208, 197, 0.5);
+  animation: bob 6s ease-in-out infinite, glow 7s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes glow {
+  0%, 100% { border-color: rgba(95, 208, 197, 0.55); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(95, 208, 197, 0.35), 0 0 18px rgba(95, 208, 197, 0.25); }
+  20% { border-color: rgba(95, 208, 197, 0.9); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(95, 208, 197, 0.55), 0 0 60px rgba(95, 208, 197, 0.5); }
+  40% { border-color: rgba(139, 155, 255, 0.55); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 155, 255, 0.35), 0 0 18px rgba(139, 155, 255, 0.25); }
+  60% { border-color: rgba(139, 155, 255, 0.95); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(139, 155, 255, 0.6), 0 0 64px rgba(139, 155, 255, 0.5); }
+  80% { border-color: rgba(255, 143, 171, 0.9); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 143, 171, 0.5), 0 0 56px rgba(255, 143, 171, 0.42); }
+}
+
+.code-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-rose { background: var(--rose); }
+.dot-amber { background: var(--amber); }
+.dot-teal { background: var(--teal); }
+.code-file {
+  margin-left: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+.code {
+  margin: 0;
+  padding: 24px 22px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+.code code { font-family: inherit; }
+.code-line { display: block; }
+.code-line.indent { padding-left: 2ch; }
+.tk-kw { color: var(--indigo); }
+.tk-str { color: var(--amber); }
+.tk-teal { color: var(--teal); }
+.tk-bool { color: var(--rose); }
+/* "Maha": teal gradient text with a light sweep passing through it and a soft glow */
+.name-glow {
+  color: var(--teal); /* fallback if gradient text is unsupported */
+  background: linear-gradient(
+    100deg,
+    #2a8c82 0%,
+    #5fd0c5 35%,
+    #d8fffa 50%,
+    #5fd0c5 65%,
+    #2a8c82 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(95, 208, 197, 0.45));
+  animation: name-shine 3.5s linear infinite;
+}
+@keyframes name-shine {
+  from { background-position: 0% center; }
+  to { background-position: -220% center; }
+}
