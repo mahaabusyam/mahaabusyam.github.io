@@ -1,5 +1,6 @@
 import { profile } from '../data/profile'
 import SocialIcon from './SocialIcon'
+import Logo from './Logo'
 import './Footer.css'
 
 const links = [
@@ -14,17 +15,8 @@ export default function Footer() {
     <footer className="footer sr sr-fade">
       <div className="footer-row">
         <div className="footer-brand">
-          <svg width="40" height="40" viewBox="0 0 48 48" aria-hidden="true">
-            <circle cx="24" cy="24" r="22" fill="#0f1d33" stroke="rgba(255,255,255,.18)" />
-            <path
-              d="M12 34V14L24 27L36 14V34"
-              fill="none"
-              stroke="#5fd0c5"
-              strokeWidth="4.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Logo size={40} animate={false} />
+
           <span className="footer-name">
             <strong>{profile.name}</strong>
             <span>{profile.title}</span>
@@ -40,13 +32,31 @@ export default function Footer() {
         </nav>
 
         <div className="footer-social">
-          <a className="soc" href={profile.github} aria-label="GitHub" target="_blank" rel="noreferrer">
+          <a
+            className="soc"
+            href={profile.github}
+            aria-label="GitHub"
+            target="_blank"
+            rel="noreferrer"
+          >
             <SocialIcon name="github" size={20} />
           </a>
-          <a className="soc" href={profile.linkedin} aria-label="LinkedIn" target="_blank" rel="noreferrer">
+
+          <a
+            className="soc"
+            href={profile.linkedin}
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noreferrer"
+          >
             <SocialIcon name="linkedin" size={20} />
           </a>
-          <a className="soc" href={`mailto:${profile.email}`} aria-label="Email">
+
+          <a
+            className="soc"
+            href={`mailto:${profile.email}`}
+            aria-label="Email"
+          >
             <SocialIcon name="mail" size={20} />
           </a>
         </div>
@@ -56,6 +66,7 @@ export default function Footer() {
         <span>
           © {new Date().getFullYear()} {profile.fullName} · {profile.location}
         </span>
+
         <a className="totop" href="#top">
           <svg
             width="16"
